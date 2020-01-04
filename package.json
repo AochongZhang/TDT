@@ -1,19 +1,19 @@
 {
   "name": "tdt",
   "version": "1.0.0",
-  "description": "A tcp debugging tool",
-  "main": "index.js",
-  "license": "MIT",
   "private": true,
+  "description": "A tcp debugging tool",
   "scripts": {
-    "start": "electron .",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "dev": "vue-cli-service build && electron ."
+    "dev": "vue-cli-service build && electron .",
+    "start": "electron ."
   },
+  "main": "index.js",
   "dependencies": {
     "core-js": "^3.4.4",
+    "element-ui": "^2.4.5",
     "vue": "^2.6.10"
   },
   "devDependencies": {
@@ -24,6 +24,8 @@
     "electron": "^7.1.7",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "vue-cli-plugin-element": "^1.0.1",
     "vue-template-compiler": "^2.6.10"
-  }
+  },
+  "license": "MIT"
 }
