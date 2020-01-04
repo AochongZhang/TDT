@@ -2,7 +2,7 @@
   <div id="left-bar">
     <div id="logo"></div>
     <div class="btn">
-      <img class="icon" src="../assets/server.svg" alt="">
+      <img class="icon" src="../assets/server.svg" alt />
     </div>
     <div class="btn">
       <i class="el-icon-s-platform"></i>

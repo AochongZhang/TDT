@@ -1,19 +1,19 @@
 <template>
   <div id="app">
     <LeftBar />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Panel />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
 import LeftBar from "./components/LeftBar";
+import Panel from "./components/Panel";
 
 export default {
   name: "app",
   components: {
-    HelloWorld,
-    LeftBar
+    LeftBar,
+    Panel
   }
 };
 </script>
@@ -25,7 +25,6 @@ export default {
 }
 
 #app {
-  background-color: bisque;
   width: 100%;
   height: 100vh;
 }
