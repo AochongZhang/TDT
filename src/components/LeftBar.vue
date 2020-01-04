@@ -1,5 +1,24 @@
 <template>
-  <div id="left-bar">left bar</div>
+  <div id="left-bar">
+    <div id="logo"></div>
+    <div class="btn">
+      <img class="icon" src="../assets/server.svg" alt="">
+    </div>
+    <div class="btn">
+      <i class="el-icon-s-platform"></i>
+    </div>
+    <div class="btn">
+      <i class="el-icon-plus"></i>
+    </div>
+    <div id="btn-group">
+      <div class="btn">
+        <i class="el-icon-warning-outline"></i>
+      </div>
+      <div class="btn">
+        <i class="el-icon-setting"></i>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -19,5 +38,27 @@ export default {
   color: #ccc;
   background-color: #2a2a2a;
   -webkit-app-region: drag;
+}
+
+#logo {
+  width: 50px;
+  height: 50px;
+  margin: 25px 0;
+  border-radius: 25px;
+  background-color: #ffffff;
+}
+
+#btn-group {
+  position: fixed;
+  bottom: 10px;
+}
+
+.btn {
+  font-size: 26px;
+  margin: 14px 12px;
+}
+
+.icon {
+  width: 20px;
 }
 </style>
