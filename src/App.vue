@@ -1,19 +1,17 @@
 <template>
   <div id="app">
     <LeftBar />
-    <Panel />
+    <router-view />
   </div>
 </template>
 
 <script>
 import LeftBar from "./components/LeftBar";
-import Panel from "./components/Panel";
 
 export default {
   name: "app",
   components: {
-    LeftBar,
-    Panel
+    LeftBar
   }
 };
 </script>

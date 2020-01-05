@@ -1,23 +1,32 @@
 <template>
   <div id="left-bar">
+
     <div id="logo"></div>
     <div class="btn">
       <img class="icon" src="../assets/server.svg" alt />
     </div>
+
     <div class="btn">
       <i class="el-icon-s-platform"></i>
     </div>
+    
     <div class="btn">
       <i class="el-icon-plus"></i>
     </div>
+
     <div id="btn-group">
       <div class="btn">
-        <i class="el-icon-warning-outline"></i>
+        <router-link to="/about" class="router-link" active-class="router-link-active">
+          <i class="el-icon-warning-outline"></i>
+        </router-link>
       </div>
       <div class="btn">
-        <i class="el-icon-setting"></i>
+        <router-link to="/setting" class="router-link" active-class="router-link-active">
+          <i class="el-icon-setting"></i>
+        </router-link>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -60,5 +69,13 @@ export default {
 
 .icon {
   width: 20px;
+}
+
+.router-link {
+  color: #ccc;
+}
+
+.router-link-active {
+  color: #1c8bf0;
 }
 </style>
