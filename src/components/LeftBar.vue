@@ -1,15 +1,21 @@
 <template>
   <div id="left-bar">
-
     <div id="logo"></div>
+
     <div class="btn">
-      <img class="icon" src="../assets/server.svg" alt />
+      <router-link to="/client" class="router-link" active-class="router-link-active">
+        <i class="el-icon-s-platform"></i>
+      </router-link>
     </div>
 
     <div class="btn">
-      <i class="el-icon-s-platform"></i>
+      <router-link to="/server" class="router-link" active-class="router-link-active">
+        <svg class="icon svg-icon" aria-hidden="true">
+          <use xlink:href="#icon-server" />
+        </svg>
+      </router-link>
     </div>
-    
+
     <div class="btn">
       <i class="el-icon-plus"></i>
     </div>
@@ -26,11 +32,12 @@
         </router-link>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
+import "../assets/iconfont"
+
 export default {
   name: "LeftBar"
 };
@@ -68,7 +75,10 @@ export default {
 }
 
 .icon {
-  width: 20px;
+  width: 0.8em;
+    height: 0.8em;
+    fill: currentColor;
+    overflow: hidden;
 }
 
 .router-link {

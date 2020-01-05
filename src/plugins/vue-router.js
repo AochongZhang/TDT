@@ -13,6 +13,14 @@ export default new VueRouter({
             name: 'Panel',
             component: Panel
         }, {
+            path: '/client',
+            name: 'Client',
+            component: Panel
+        }, {
+            path: '/server',
+            name: 'Server',
+            component: Panel
+        }, {
             path: '/about',
             name: 'About',
             component: About
