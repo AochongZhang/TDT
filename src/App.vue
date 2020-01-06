@@ -23,11 +23,6 @@ export default {
       clientHeight: document.documentElement.clientHeight
     };
   },
-  watch: {
-    clientWidth(val) {
-      console.log(val);
-    }
-  },
   mounted() {
     var _this = this;
     window.onresize = function() {
