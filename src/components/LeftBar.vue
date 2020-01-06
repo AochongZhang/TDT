@@ -45,9 +45,6 @@ export default {
 
 <style>
 #left-bar {
-  float: left;
-  width: 70px;
-  height: 100vh;
   padding: 20px 10px;
   box-sizing: border-box;
   text-align: center;
