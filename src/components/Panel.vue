@@ -1,22 +1,51 @@
 <template>
   <div id="panel">
-    <!-- <div class=""> -->
-      <List class="list" />
-      <!-- <div class="base drag-line"></div> -->
-    <!-- </div> -->
-    
-    <!-- <Console /> -->
+    <div class="list" :style="{width: global.listWidth + 'px'}">
+      <List />
+      <div class="base drag-line" @mousedown="listMouseDown"></div>
+    </div>
+
+    <Console class="base console" :style="{left: global.listWidth + 'px', width: global.clientWidth - global.leftBarWidth - global.listWidth + 'px'}" />
   </div>
 </template>
 
 <script>
 import List from "../components/List";
-// import Console from "../components/Console";
+import Console from "../components/Console";
 
 export default {
   name: "Panel",
   components: {
-    List
+    List,
+    Console
+  },
+  data() {
+    return {
+      global: this.Global,
+      listMouseX: 0
+    };
+  },
+  methods: {
+    listMouseDown(e) {
+      //阻止默认事件
+      e.preventDefault();
+      this.listMouseX = e.clientX - this.global.leftBarWidth - this.global.listWidth;
+      document.onmousemove = this.listMouseMove;
+      document.onmouseup = this.listMouseUp;
+    },
+    listMouseMove(e) {
+      let width = e.clientX - this.global.leftBarWidth - this.listMouseX
+      width = width < this.global.listMinWidth ? this.global.listMinWidth : width;
+      width = width > this.global.listMaxWidth ? this.global.listMaxWidth : width;
+      this.global.listWidth = width;
+    },
+    listMouseUp() {
+      document.onmousemove = null;
+      document.onmouseup = null;
+    }
+  },
+  mounted() {
+    
   }
 };
 </script>
@@ -24,17 +53,17 @@ export default {
 <style>
 #panel {
   color: #ccc;
-  /* background-color: #1e1e1e; */
   -webkit-app-region: drag;
 }
 
 .list {
-  width: 250px;
+  position: absolute;
 }
 
 .drag-line {
   width: 5px;
-  background-color: red;
   right: 0;
+  top: 0;
+  cursor: col-resize;
 }
 </style>

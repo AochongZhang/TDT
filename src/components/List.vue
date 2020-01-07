@@ -84,11 +84,6 @@ export default {
 </script>
 
 <style>
-#list {
-  /* width: 210px; */
-  /* overflow: auto; */
-}
-
 .el-list {
   height: 100vh;
 }

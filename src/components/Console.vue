@@ -10,10 +10,7 @@ export default {
 
 <style>
 #console {
-  height: 100vh;
   background-color: #ccc;
-  position: absolute;
-  left: 270px;
   color: #000;
 }
 </style>
