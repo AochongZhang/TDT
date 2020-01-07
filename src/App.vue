@@ -22,7 +22,7 @@ export default {
     };
   },
   mounted() {
-    var _this = this
+    var _this = this;
     window.onresize = function() {
       // 定义窗口大小变更通知事件
       _this.Global.clientWidth = document.documentElement.clientWidth;
@@ -33,17 +33,8 @@ export default {
 </script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-}
-
-.base {
-  height: 100vh !important;
-  position: absolute !important;
-}
-
 #app {
   width: 100%;
+  overflow: hidden;
 }
 </style>

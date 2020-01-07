@@ -4,8 +4,9 @@
       <List />
       <div class="base drag-line" @mousedown="listMouseDown"></div>
     </div>
-
-    <Console class="base console" :style="{left: global.listWidth + 'px', width: global.clientWidth - global.leftBarWidth - global.listWidth + 'px'}" />
+    <Console 
+      class="base console" 
+      :style="{left: global.listWidth + 'px', width: global.clientWidth - global.leftBarWidth - global.listWidth + 'px'}" />
   </div>
 </template>
 
@@ -43,9 +44,6 @@ export default {
       document.onmousemove = null;
       document.onmouseup = null;
     }
-  },
-  mounted() {
-    
   }
 };
 </script>
