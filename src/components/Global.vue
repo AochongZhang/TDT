@@ -1,11 +1,12 @@
 <script>
 export default {
-  leftBarWidth: 70,
-  listWidth: 260,
-  listMinWidth: 50,
-  listMaxWidth: 400,
-  clientWidth: document.documentElement.clientWidth,
-  clientHeight: document.documentElement.clientHeight
+  client: {
+    width: document.documentElement.clientWidth,
+    height: document.documentElement.clientHeight
+  },
+  leftBar: {
+    width: 70
+  }
 };
 </script>
 
@@ -21,8 +22,10 @@ export default {
 }
 
 .el-input__inner {
-  color: #ccc;
-  background: #0000 !important;
+  background: #676869;
+  color: #f5f7f7;
+  border: none;
+  box-shadow: 0px -1px 1px 0px #848484;
 }
 
 .el-button {
@@ -30,14 +33,23 @@ export default {
   color: #409eff;
   border: 1px solid #409eff;
 }
-.el-button:focus, .el-button:hover {
+.el-button:focus,
+.el-button:hover {
   color: #0f87ff;
   border-color: #0f87ff;
   background-color: #0000;
 }
 
 .el-checkbox__inner {
-    background-color: #0000;
+  background-color: #0000;
 }
 
+.el-input-group__append,
+.el-input-group__prepend {
+  padding: 0 10px;
+  background: #676869;
+  color: #f5f7f7;
+  border: none;
+  box-shadow: 0px -1px 1px 0px #848484;
+}
 </style>

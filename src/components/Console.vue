@@ -1,6 +1,21 @@
 <template>
   <div id="console">
-    <div class="title">
+    <el-row type="flex" justify="space-around">
+      <el-col :span="12">
+        <el-input v-model="host" size="mini">
+          <template slot="prepend">目标IP</template>
+        </el-input>
+      </el-col>
+      <el-col :span="7">
+        <el-input v-model="port" size="mini">
+          <template slot="prepend">目标端口</template>
+        </el-input>
+      </el-col>
+      <el-col :span="3">
+        <el-button class="input-margin" size="mini">连接</el-button>
+      </el-col>
+    </el-row>
+    <!-- <div class="title">
       <div class="input-left">
         <div style="float: left;">
           <span class="input-margin">远端地址</span>
@@ -21,7 +36,7 @@
       <div class="input-right">
         <el-button class="input-margin" size="mini">连接</el-button>
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 
@@ -40,14 +55,16 @@ export default {
 
 <style>
 #console {
+  height: 100vh;
+  padding: 10px;
   background-color: #2a2a2a;
   color: #ccc;
 }
 
-.title {
+/* .title {
   margin: 20px;
   text-align: center;
-  /* background-color: #1e1e1e; */
+  background-color: #1e1e1e;
 }
 
 .host-input {
@@ -71,5 +88,5 @@ export default {
 .input-right {
   position: absolute;
   right: 20px;
-}
+} */
 </style>

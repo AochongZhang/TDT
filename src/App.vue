@@ -1,9 +1,9 @@
 <template>
   <div id="app" class="base">
-    <LeftBar class="base" :style="{width: global.leftBarWidth}" />
+    <LeftBar class="base" :style="{width: global.leftBar.width}" />
     <router-view
       class="base"
-      :style="{width: global.clientWidth - global.leftBarWidth + 'px', left: global.leftBarWidth + 'px'}"
+      :style="{width: global.client.width - global.leftBar.width + 'px', left: global.leftBar.width + 'px'}"
     />
   </div>
 </template>
@@ -25,8 +25,8 @@ export default {
     var _this = this;
     window.onresize = function() {
       // 定义窗口大小变更通知事件
-      _this.Global.clientWidth = document.documentElement.clientWidth;
-      _this.Global.clientHeight = document.documentElement.clientHeight;
+      _this.Global.client.width = document.documentElement.clientWidth;
+      _this.Global.client.height = document.documentElement.clientHeight;
     };
   }
 };
