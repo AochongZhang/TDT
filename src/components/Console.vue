@@ -1,42 +1,56 @@
 <template>
   <div id="console">
-    <el-row type="flex" justify="space-around">
-      <el-col :span="12">
-        <el-input v-model="host" size="mini">
-          <template slot="prepend">目标IP</template>
-        </el-input>
-      </el-col>
-      <el-col :span="7">
-        <el-input v-model="port" size="mini">
-          <template slot="prepend">目标端口</template>
-        </el-input>
-      </el-col>
-      <el-col :span="3">
-        <el-button class="input-margin" size="mini">连接</el-button>
-      </el-col>
-    </el-row>
-    <!-- <div class="title">
-      <div class="input-left">
-        <div style="float: left;">
-          <span class="input-margin">远端地址</span>
-          <el-input class="host-input input-margin" size="mini" v-model="host"></el-input>
+    <div class="title">
+      <el-row type="flex" justify="space-between">
+        <el-col :span="12">
+          <el-input v-model="host" size="mini">
+            <template slot="prepend">目标IP</template>
+          </el-input>
+        </el-col>
+        <el-col :span="7">
+          <el-input v-model="port" size="mini">
+            <template slot="prepend">目标端口</template>
+          </el-input>
+        </el-col>
+        <el-col :span="3" style="text-align: right">
+          <el-button size="mini">连接</el-button>
+        </el-col>
+      </el-row>
+    </div>
+    <div class="content" :style="{height: contentHeight + 'px'}">
+      <div class="send-wrap">
+        <div class="control-bar">
+          <el-row type="flex" justify="space-between">
+            <el-col :span="12">
+              <el-switch v-model="value" active-color="#1c8bf0" inactive-color="#ccc"></el-switch>
+            </el-col>
+            <el-col :span="7">
+              <el-button size="mini">发送</el-button>
+            </el-col>
+            <el-col :span="3">
+              <el-button size="mini">清空</el-button>
+            </el-col>
+          </el-row>
         </div>
-        <div style="float: left;">
-          <span class="input-margin">远端端口</span>
-          <el-input class="port-input input-margin" size="mini" v-model="port"></el-input>
-          <span class="input-margin">本地端口</span>
-          <el-input
-            class="port-input input-margin"
-            size="mini"
-            v-model="localPort"
-            placeholder="随机"
-          ></el-input>
+        <el-input class="control-text" :style="{height: textWrapHeight + 'px'}" resize="none" type="textarea" :rows="5" v-model="textarea"></el-input>
+      </div>
+      <div class="recive-wrap">
+        <div class="control-bar">
+          <el-row type="flex" justify="space-between">
+            <el-col :span="12">
+              <el-switch v-model="value" active-color="#1c8bf0" inactive-color="#ccc"></el-switch>
+            </el-col>
+            <el-col :span="7">
+              <el-button size="mini">发送</el-button>
+            </el-col>
+            <el-col :span="3">
+              <el-button size="mini">清空</el-button>
+            </el-col>
+          </el-row>
         </div>
+        <el-input class="control-text" :style="{height: textWrapHeight + 'px'}" resize="none" type="textarea" :rows="5" v-model="textarea"></el-input>
       </div>
-      <div class="input-right">
-        <el-button class="input-margin" size="mini">连接</el-button>
-      </div>
-    </div>-->
+    </div>
   </div>
 </template>
 
@@ -47,8 +61,19 @@ export default {
     return {
       host: "tcptest.home.zhangaochong.com",
       port: "65535",
-      localPort: ""
+      localPort: "",
+      value: false,
+      textarea: "aaaaaa",
+      global: this.Global
     };
+  },
+  computed: {
+    contentHeight() {
+      return this.global.client.height - 90
+    },
+    textWrapHeight() {
+      return (this.contentHeight - 120) / 2
+    }
   }
 };
 </script>
@@ -56,37 +81,20 @@ export default {
 <style>
 #console {
   height: 100vh;
-  padding: 10px;
+  padding: 20px;
   background-color: #2a2a2a;
   color: #ccc;
 }
 
-/* .title {
-  margin: 20px;
-  text-align: center;
-  background-color: #1e1e1e;
+.title {
+  margin-bottom: 20px;
 }
 
-.host-input {
-  width: 220px;
+.control-bar {
+  margin: 0 0 20px 0;
 }
 
-.port-input {
-  width: 68px;
+.control-text {
+  margin: 0 0 20px 0;
 }
-
-.input-margin {
-  margin: 5px;
-}
-
-.input-left {
-  position: absolute;
-  left: 20px;
-  margin-right: 90px;
-}
-
-.input-right {
-  position: absolute;
-  right: 20px;
-} */
 </style>

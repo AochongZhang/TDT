@@ -21,27 +21,34 @@ export default {
   position: absolute !important;
 }
 
+.el-button,
 .el-input__inner {
+    border-radius: 5px;
+}
+
+.el-button,
+.el-button:hover,
+.el-button:focus,
+.el-input__inner,
+.el-input__inner:hover {
   background: #676869;
   color: #f5f7f7;
-  border: none;
+  border: 2px solid #0000;
   box-shadow: 0px -1px 1px 0px #848484;
 }
 
-.el-button {
-  background: #0000;
-  color: #409eff;
-  border: 1px solid #409eff;
-}
-.el-button:focus,
-.el-button:hover {
-  color: #0f87ff;
-  border-color: #0f87ff;
-  background-color: #0000;
+.el-input__inner:focus {
+  border: 2px solid #1c8bf0;
 }
 
-.el-checkbox__inner {
-  background-color: #0000;
+.el-textarea__inner,
+.el-textarea__inner:hover,
+.el-textarea__inner:focus {
+    height: 100%;
+    background-color: #1e1e1e;
+    color: #ccc;
+    border: none;
+    box-shadow: 1px 1px 2px 0px #4e4e4e;
 }
 
 .el-input-group__append,

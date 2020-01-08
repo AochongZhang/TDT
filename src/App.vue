@@ -1,9 +1,9 @@
 <template>
   <div id="app" class="base">
-    <LeftBar class="base" :style="{width: global.leftBar.width}" />
+    <LeftBar class="base" :style="{width: leftBarwidth}" />
     <router-view
       class="base"
-      :style="{width: global.client.width - global.leftBar.width + 'px', left: global.leftBar.width + 'px'}"
+      :style="{width: rightContentWidth + 'px', left: leftBarwidth + 'px'}"
     />
   </div>
 </template>
@@ -20,6 +20,14 @@ export default {
     return {
       global: this.Global
     };
+  },
+  computed: {
+    leftBarwidth() {
+      return this.global.leftBar.width
+    },
+    rightContentWidth() {
+      return this.global.client.width - this.leftBarwidth
+    }
   },
   mounted() {
     var _this = this;
