@@ -1,6 +1,6 @@
 <template>
   <div id="list">
-    <el-scrollbar>
+    <el-scrollbar style="height: 100%">
       <el-menu
         default-active="2"
         class="el-list"

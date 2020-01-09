@@ -14,6 +14,7 @@ export default {
 * {
   margin: 0;
   padding: 0;
+  -webkit-app-region: no-drag;
 }
 
 .base {
@@ -24,6 +25,7 @@ export default {
 .el-button,
 .el-input__inner {
     border-radius: 5px;
+    text-overflow: ellipsis;
 }
 
 .el-button,
@@ -58,5 +60,11 @@ export default {
   color: #f5f7f7;
   border: none;
   box-shadow: 0px -1px 1px 0px #848484;
+}
+
+.el-header,
+.el-main,
+.el-footer {
+  padding: 0;
 }
 </style>
