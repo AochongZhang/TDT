@@ -18,10 +18,34 @@
           </el-col>
         </el-row>
       </div>
+      <div class="content-top" :style="{height: contentTopHeight + 'px'}">
+        <el-divider content-position="left">发送区</el-divider>
+        <!-- <div class="control-bar">
+          <el-row type="flex" justify="space-between">
+            <el-col :span="12">
+              <el-switch v-model="value" active-color="#1c8bf0" inactive-color="#ccc"></el-switch>
+            </el-col>
+            <el-col :span="7">
+              <el-button size="mini">发送</el-button>
+            </el-col>
+            <el-col :span="3">
+              <el-button size="mini">清空</el-button>
+            </el-col>
+          </el-row>
+        </div>
+        <el-scrollbar class="control-text" :style="{height: textWrapHeight + 'px'}">
+          <el-input autosize resize="none" type="textarea" v-model="textarea"></el-input>
+        </el-scrollbar>-->
+      </div>
 
-      <div class="content-top" :style="{height: contentTopHeight + 'px'}"></div>
-      <div class="drag-line" @mousedown="dragLineMouseDown"></div>
-      <div class="content-bottom" :style="{height: contentBottomHeight + 'px'}"></div>
+      <div class="drag-line" @mousedown="dragLineMouseDown">
+        <svg class="icon svg-icon" aria-hidden="true">
+          <use xlink:href="#icon-tuodong" />
+        </svg>
+      </div>
+      <div class="content-bottom" :style="{height: contentBottomHeight + 'px'}">
+        <el-divider content-position="left">接收区</el-divider>
+      </div>
     </div>
 
     <!-- <el-scrollbar>
@@ -142,11 +166,11 @@ export default {
   watch: {
     // 窗口高度改变时，修改contentTopHeight高度
     containerHeight(oldVal, newVal) {
-      this.contentTopHeight += ((oldVal - newVal) / 2)
+      this.contentTopHeight += (oldVal - newVal) / 2;
     },
     // 限制contentTopHeight高度范围
     contentTopHeight(val) {
-      let max = this.containerHeight - 40 - this.contentHeightMin
+      let max = this.containerHeight - 40 - this.contentHeightMin;
       val = val < this.contentHeightMin ? this.contentHeightMin : val;
       val = val > max ? max : val;
       this.contentTopHeight = val;
@@ -156,12 +180,12 @@ export default {
     dragLineMouseDown(e) {
       //阻止默认事件
       e.preventDefault();
-      this.dragListMouseY = e.clientY - 50 - this.contentTopHeight;
+      this.dragListMouseY = e.clientY - 45 - this.contentTopHeight;
       document.onmousemove = this.dragLineMouseMove;
       document.onmouseup = this.dragLineMouseUp;
     },
     dragLineMouseMove(e) {
-      this.contentTopHeight = e.clientY - 50 - this.dragListMouseY;
+      this.contentTopHeight = e.clientY - 45 - this.dragListMouseY;
     },
     dragLineMouseUp() {
       document.onmousemove = null;
@@ -169,7 +193,7 @@ export default {
     }
   },
   mounted() {
-    this.contentTopHeight = (this.containerHeight - 40) / 2
+    this.contentTopHeight = (this.containerHeight - 40) / 2;
   }
 };
 </script>
@@ -211,12 +235,20 @@ export default {
 .drag-line {
   height: 10px;
   cursor: row-resize;
+  text-align: center;
+  background: #444;
+  line-height: 10px;
+  font-size: 10px;
+  border-radius: 5px;
+  width: 60px;
+  margin: 0 auto;
+  margin-top: 5px;
 }
 
 /* .drag-line, */
 .content-top,
 .content-bottom {
-  box-sizing: border-box;
-  border: 1px solid #575757;
+  /* box-sizing: border-box;
+  border: 1px solid #575757; */
 }
 </style>

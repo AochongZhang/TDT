@@ -24,8 +24,8 @@ export default {
 
 .el-button,
 .el-input__inner {
-    border-radius: 5px;
-    text-overflow: ellipsis;
+  border-radius: 5px;
+  text-overflow: ellipsis;
 }
 
 .el-button,
@@ -46,11 +46,11 @@ export default {
 .el-textarea__inner,
 .el-textarea__inner:hover,
 .el-textarea__inner:focus {
-    height: 100%;
-    background-color: #1e1e1e;
-    color: #ccc;
-    border: none;
-    box-shadow: 1px 1px 2px 0px #4e4e4e;
+  height: 100%;
+  background-color: #1e1e1e;
+  color: #ccc;
+  border: none;
+  box-shadow: 1px 1px 2px 0px #4e4e4e;
 }
 
 .el-input-group__append,
@@ -66,5 +66,21 @@ export default {
 .el-main,
 .el-footer {
   padding: 0;
+}
+
+.el-divider--horizontal {
+  margin: 20px 0;
+}
+
+.el-divider {
+  background-color: #676869;
+}
+
+.el-divider__text {
+  border-radius: 10px;
+  color: #f5f7f7;
+  background-color: #676869;
+  font-size: 10px;
+  font-weight: lighter;
 }
 </style>
