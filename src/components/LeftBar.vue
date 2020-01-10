@@ -17,7 +17,33 @@
     </div>
 
     <div class="btn">
-      <i class="el-icon-plus"></i>
+      <!-- <i class="el-icon-plus"></i> -->
+      <el-popover placement="right" width="100" trigger="click">
+        <el-menu
+          class="el-menu-vertical-demo"
+          @open="handleOpen"
+          @close="handleClose"
+          background-color="#2a2a2a"
+          text-color="#ccc"
+          active-text-color="#1c8bf0"
+        >
+          <el-menu-item>
+            <i class="el-icon-s-platform" style="color: inherit;"></i>
+            <span slot="title">创建客户端</span>
+          </el-menu-item>
+          <el-menu-item>
+            <svg
+              style="width: 24px; height: 13px; margin-right: 5px;"
+              class="icon svg-icon"
+              aria-hidden="true"
+            >
+              <use xlink:href="#icon-server" />
+            </svg>
+            <span slot="title">创建服务端</span>
+          </el-menu-item>
+        </el-menu>
+        <i slot="reference" class="el-icon-plus"></i>
+      </el-popover>
     </div>
 
     <div id="btn-group">
@@ -36,7 +62,7 @@
 </template>
 
 <script>
-import "../assets/iconfont"
+import "../assets/iconfont";
 
 export default {
   name: "LeftBar"
@@ -69,13 +95,14 @@ export default {
 .btn {
   font-size: 26px;
   margin: 14px 12px;
+  cursor: pointer;
 }
 
 .icon {
   width: 0.8em;
-    height: 0.8em;
-    fill: currentColor;
-    overflow: hidden;
+  height: 0.8em;
+  fill: currentColor;
+  overflow: hidden;
 }
 
 .router-link {

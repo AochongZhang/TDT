@@ -30,6 +30,25 @@ export default {
   float: right;
 }
 
+.el-popover {
+  background-color: #2a2a2a;
+  border: 1px solid #1e1e1e;
+  box-shadow: 0px 0px 6px 0px #1e1e1e;
+  padding: 6px;
+}
+
+.el-popper[x-placement^="right"] .popper__arrow {
+  border-right-color: #1e1e1e;
+}
+
+.el-popper[x-placement^="right"] .popper__arrow::after {
+  border-right-color: #2a2a2a;
+}
+
+.el-menu-item:hover {
+  color: #1c8bf0!important;
+}
+
 .el-button,
 .el-input__inner {
   border-radius: 5px;
