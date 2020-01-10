@@ -22,10 +22,21 @@
         <el-divider content-position="left">发送区</el-divider>
         <div class="control-bar">
           <el-row type="flex" justify="space-between">
-            <el-col :span="12">
-              <el-switch v-model="value" active-color="#1c8bf0" inactive-color="#ccc"></el-switch>
+            <el-col :span="5">
+              <el-radio-group v-model="radio4" size="mini">
+                <el-radio-button label="文本"></el-radio-button>
+                <el-radio-button label="16进制"></el-radio-button>
+              </el-radio-group>
             </el-col>
-            <el-col :span="7">
+            <el-col :span="5">
+              <el-input v-model="port" size="mini">
+                <template slot="prepend">间隔</template>
+              </el-input>
+            </el-col>
+            <el-col :span="3">
+              <el-button size="mini">自动发送</el-button>
+            </el-col>
+            <el-col :span="3">
               <el-button size="mini">发送</el-button>
             </el-col>
             <el-col :span="3">
@@ -69,95 +80,6 @@
         ></el-input>
       </div>
     </div>
-
-    <!-- <el-scrollbar>
-              <el-input :autosize="{ minRows: 15}" resize="none" type="textarea" v-model="textarea"></el-input>
-    </el-scrollbar>-->
-    <!-- <div class="control-bar">
-          <el-row type="flex" justify="space-between">
-            <el-col :span="12">
-              <el-switch v-model="value" active-color="#1c8bf0" inactive-color="#ccc"></el-switch>
-            </el-col>
-            <el-col :span="7">
-              <el-button size="mini">发送</el-button>
-            </el-col>
-            <el-col :span="3">
-              <el-button size="mini">清空</el-button>
-            </el-col>
-          </el-row>
-        </div>
-        <el-scrollbar class="control-text" :style="{height: textWrapHeight + 'px'}">
-          <el-input :autosize="{ minRows: 15}" resize="none" type="textarea" v-model="textarea"></el-input>
-    </el-scrollbar>-->
-
-    <!-- <div class="control-bar">
-          <el-row type="flex" justify="space-between">
-            <el-col :span="12">
-              <el-switch v-model="value" active-color="#1c8bf0" inactive-color="#ccc"></el-switch>
-            </el-col>
-            <el-col :span="7">
-              <el-button size="mini">发送</el-button>
-            </el-col>
-            <el-col :span="3">
-              <el-button size="mini">清空</el-button>
-            </el-col>
-          </el-row>
-        </div>
-    <el-input class="control-text" :style="{height: textWrapHeight + 'px'}" resize="none" type="textarea" :rows="5" v-model="textarea"></el-input>-->
-    <!-- <div class="title">
-      <el-row type="flex" justify="space-between">
-        <el-col :span="12">
-          <el-input v-model="host" size="mini">
-            <template slot="prepend">目标IP</template>
-          </el-input>
-        </el-col>
-        <el-col :span="7">
-          <el-input v-model="port" size="mini">
-            <template slot="prepend">目标端口</template>
-          </el-input>
-        </el-col>
-        <el-col :span="3" style="text-align: right">
-          <el-button size="mini">连接</el-button>
-        </el-col>
-      </el-row>
-    </div>
-
-    <div class="content" :style="{height: contentHeight + 'px'}">
-      <div class="send-wrap">
-        <div class="control-bar">
-          <el-row type="flex" justify="space-between">
-            <el-col :span="12">
-              <el-switch v-model="value" active-color="#1c8bf0" inactive-color="#ccc"></el-switch>
-            </el-col>
-            <el-col :span="7">
-              <el-button size="mini">发送</el-button>
-            </el-col>
-            <el-col :span="3">
-              <el-button size="mini">清空</el-button>
-            </el-col>
-          </el-row>
-        </div>
-        <el-scrollbar class="control-text" :style="{height: textWrapHeight + 'px'}">
-          <el-input :autosize="{ minRows: 15}" resize="none" type="textarea" v-model="textarea"></el-input>
-        </el-scrollbar>
-      </div>
-      <div class="recive-wrap">
-        <div class="control-bar">
-          <el-row type="flex" justify="space-between">
-            <el-col :span="12">
-              <el-switch v-model="value" active-color="#1c8bf0" inactive-color="#ccc"></el-switch>
-            </el-col>
-            <el-col :span="7">
-              <el-button size="mini">发送</el-button>
-            </el-col>
-            <el-col :span="3">
-              <el-button size="mini">清空</el-button>
-            </el-col>
-          </el-row>
-        </div>
-        <el-input class="control-text" :style="{height: textWrapHeight + 'px'}" resize="none" type="textarea" :rows="5" v-model="textarea"></el-input>
-      </div>
-    </div>-->
   </div>
 </template>
 
@@ -174,18 +96,19 @@ export default {
       global: this.Global,
       dragListMouseY: 0,
       contentTopHeight: 0,
-      contentHeightMin: 100
+      contentHeightMin: 100,
+      radio4: "文本"
     };
   },
   computed: {
     // 容器高度 = 页面高度 - 页面内边距 * 2
     containerHeight() {
-      return this.global.client.height - 20 * 2;
+      return this.global.client.height - 10 * 2;
     },
     contentAllHeight() {
-      return this.containerHeight - 30 - 20 * 2 - 15;
+      return this.containerHeight - 24 - 20 * 2 - 15;
     },
-    // 接收区高度 = 内容区总高度 - 发送区高度 
+    // 接收区高度 = 内容区总高度 - 发送区高度
     contentBottomHeight() {
       return this.contentAllHeight - this.contentTopHeight;
     }
@@ -227,36 +150,18 @@ export default {
 
 <style>
 #console {
-  padding: 20px;
+  padding: 10px;
   background-color: #2a2a2a;
   color: #ccc;
   -webkit-app-region: drag;
 }
 
-#title {
-  /* margin-bottom: 20px; */
+.title-bar {
+  -webkit-app-region: drag;
 }
 
 .control-bar {
   margin-bottom: 10px;
-}
-
-.control-text {
-  /* margin: 0 0 20px 0; */
-}
-
-.header {
-  /* margin-bottom: 20px; */
-  border: 1px solid;
-}
-
-.main {
-  margin-top: 20px;
-  border: 1px solid;
-}
-
-.container {
-  height: 100%;
 }
 
 .drag-line {
@@ -270,12 +175,5 @@ export default {
   width: 60px;
   margin: 0 auto;
   margin-top: 5px;
-}
-
-/* .drag-line, */
-.content-top,
-.content-bottom {
-  /* box-sizing: border-box;
-  border: 1px solid #575757; */
 }
 </style>
