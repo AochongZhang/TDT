@@ -20,7 +20,7 @@
       </div>
       <div class="content-top" :style="{height: contentTopHeight + 'px'}">
         <el-divider content-position="left">发送区</el-divider>
-        <!-- <div class="control-bar">
+        <div class="control-bar">
           <el-row type="flex" justify="space-between">
             <el-col :span="12">
               <el-switch v-model="value" active-color="#1c8bf0" inactive-color="#ccc"></el-switch>
@@ -33,9 +33,12 @@
             </el-col>
           </el-row>
         </div>
-        <el-scrollbar class="control-text" :style="{height: textWrapHeight + 'px'}">
-          <el-input autosize resize="none" type="textarea" v-model="textarea"></el-input>
-        </el-scrollbar>-->
+        <el-input
+          resize="none"
+          :style="{height: contentTopHeight - 65 + 'px'}"
+          type="textarea"
+          v-model="textarea"
+        ></el-input>
       </div>
 
       <div class="drag-line" @mousedown="dragLineMouseDown">
@@ -45,6 +48,25 @@
       </div>
       <div class="content-bottom" :style="{height: contentBottomHeight + 'px'}">
         <el-divider content-position="left">接收区</el-divider>
+        <div class="control-bar">
+          <el-row type="flex" justify="space-between">
+            <el-col :span="12">
+              <el-switch v-model="value" active-color="#1c8bf0" inactive-color="#ccc"></el-switch>
+            </el-col>
+            <el-col :span="7">
+              <el-button size="mini">接收</el-button>
+            </el-col>
+            <el-col :span="3">
+              <el-button size="mini">清空</el-button>
+            </el-col>
+          </el-row>
+        </div>
+        <el-input
+          resize="none"
+          :style="{height: contentBottomHeight - 65 + 'px'}"
+          type="textarea"
+          v-model="textarea"
+        ></el-input>
       </div>
     </div>
 
@@ -156,21 +178,26 @@ export default {
     };
   },
   computed: {
+    // 容器高度 = 页面高度 - 页面内边距 * 2
     containerHeight() {
-      return this.global.client.height - 40;
+      return this.global.client.height - 20 * 2;
     },
+    contentAllHeight() {
+      return this.containerHeight - 30 - 20 * 2 - 15;
+    },
+    // 接收区高度 = 内容区总高度 - 发送区高度 
     contentBottomHeight() {
-      return this.containerHeight - 40 - this.contentTopHeight;
+      return this.contentAllHeight - this.contentTopHeight;
     }
   },
   watch: {
-    // 窗口高度改变时，修改contentTopHeight高度
+    // 窗口高度改变时，修改发送区高度
     containerHeight(oldVal, newVal) {
       this.contentTopHeight += (oldVal - newVal) / 2;
     },
-    // 限制contentTopHeight高度范围
+    // 限制发送区高度范围
     contentTopHeight(val) {
-      let max = this.containerHeight - 40 - this.contentHeightMin;
+      let max = this.contentAllHeight - this.contentHeightMin;
       val = val < this.contentHeightMin ? this.contentHeightMin : val;
       val = val > max ? max : val;
       this.contentTopHeight = val;
@@ -180,12 +207,12 @@ export default {
     dragLineMouseDown(e) {
       //阻止默认事件
       e.preventDefault();
-      this.dragListMouseY = e.clientY - 45 - this.contentTopHeight;
+      this.dragListMouseY = e.clientY - 20 * 2 - 10 - this.contentTopHeight;
       document.onmousemove = this.dragLineMouseMove;
       document.onmouseup = this.dragLineMouseUp;
     },
     dragLineMouseMove(e) {
-      this.contentTopHeight = e.clientY - 45 - this.dragListMouseY;
+      this.contentTopHeight = e.clientY - 20 * 2 - 10 - this.dragListMouseY;
     },
     dragLineMouseUp() {
       document.onmousemove = null;
@@ -193,7 +220,7 @@ export default {
     }
   },
   mounted() {
-    this.contentTopHeight = (this.containerHeight - 40) / 2;
+    this.contentTopHeight = this.contentAllHeight / 2;
   }
 };
 </script>
@@ -211,7 +238,7 @@ export default {
 }
 
 .control-bar {
-  /* margin: 0 0 20px 0; */
+  margin-bottom: 10px;
 }
 
 .control-text {
