@@ -2,53 +2,42 @@
   <div id="console">
     <div :style="{height: containerHeight + 'px'}">
       <div class="title-bar">
-        <el-row type="flex" justify="space-between">
-          <el-col :span="12">
-            <el-input v-model="host" size="mini">
-              <template slot="prepend">目标IP</template>
-            </el-input>
-          </el-col>
-          <el-col :span="7">
-            <el-input v-model="port" size="mini">
-              <template slot="prepend">目标端口</template>
-            </el-input>
-          </el-col>
-          <el-col :span="3" style="text-align: right">
-            <el-button size="mini">连接</el-button>
-          </el-col>
-        </el-row>
+        <div class="fl">
+          <el-input class="host-input" v-model="host" size="mini">
+            <template slot="prepend">目标IP</template>
+          </el-input>
+          <el-input class="port-input" v-model="port" size="mini">
+            <template slot="prepend">目标端口</template>
+          </el-input>
+        </div>
+        <div class="fr">
+          <el-button size="mini">连接</el-button>
+        </div>
       </div>
       <div class="content-top" :style="{height: contentTopHeight + 'px'}">
         <el-divider content-position="left">发送区</el-divider>
         <div class="control-bar">
-          <el-row type="flex" justify="space-between">
-            <el-col :span="5">
-              <el-radio-group v-model="radio4" size="mini">
-                <el-radio-button label="文本"></el-radio-button>
-                <el-radio-button label="16进制"></el-radio-button>
-              </el-radio-group>
-            </el-col>
-            <el-col :span="5">
-              <el-input v-model="port" size="mini">
-                <template slot="prepend">间隔</template>
-              </el-input>
-            </el-col>
-            <el-col :span="3">
-              <el-button size="mini">自动发送</el-button>
-            </el-col>
-            <el-col :span="3">
-              <el-button size="mini">发送</el-button>
-            </el-col>
-            <el-col :span="3">
-              <el-button size="mini">清空</el-button>
-            </el-col>
-          </el-row>
+          <div class="fl">
+            <el-radio-group class="send-input-type" v-model="sendInputType" size="mini">
+              <el-radio-button label="文本"></el-radio-button>
+              <el-radio-button label="16进制"></el-radio-button>
+            </el-radio-group>
+            <el-button size="mini">清空</el-button>
+          </div>
+          <div class="fr">
+            <el-input class="send-time-input" v-model="sendTime" size="mini">
+              <template slot="prepend">间隔</template>
+              <template slot="append">ms</template>
+            </el-input>
+            <el-button size="mini">自动发送</el-button>
+            <el-button size="mini">发送</el-button>
+          </div>
         </div>
         <el-input
           resize="none"
           :style="{height: contentTopHeight - 65 + 'px'}"
           type="textarea"
-          v-model="textarea"
+          v-model="sendInputValue"
         ></el-input>
       </div>
 
@@ -60,23 +49,20 @@
       <div class="content-bottom" :style="{height: contentBottomHeight + 'px'}">
         <el-divider content-position="left">接收区</el-divider>
         <div class="control-bar">
-          <el-row type="flex" justify="space-between">
-            <el-col :span="12">
-              <el-switch v-model="value" active-color="#1c8bf0" inactive-color="#ccc"></el-switch>
-            </el-col>
-            <el-col :span="7">
-              <el-button size="mini">接收</el-button>
-            </el-col>
-            <el-col :span="3">
-              <el-button size="mini">清空</el-button>
-            </el-col>
-          </el-row>
+          <div class="fl">
+            <el-radio-group class="send-input-type" v-model="reciveOutputType" size="mini">
+              <el-radio-button label="文本"></el-radio-button>
+              <el-radio-button label="16进制"></el-radio-button>
+            </el-radio-group>
+            <el-button size="mini">清空</el-button>
+          </div>
         </div>
         <el-input
+          readonly
           resize="none"
           :style="{height: contentBottomHeight - 65 + 'px'}"
           type="textarea"
-          v-model="textarea"
+          v-model="reciveOutputValue"
         ></el-input>
       </div>
     </div>
@@ -92,12 +78,15 @@ export default {
       port: "65535",
       localPort: "",
       value: false,
-      textarea: "aaaaaa",
       global: this.Global,
       dragListMouseY: 0,
       contentTopHeight: 0,
       contentHeightMin: 100,
-      radio4: "文本"
+      sendInputValue: "发送",
+      sendInputType: "文本",
+      sendTime: 10,
+      reciveOutputType: "16进制",
+      reciveOutputValue: "接收"
     };
   },
   computed: {
@@ -157,10 +146,12 @@ export default {
 }
 
 .title-bar {
+  height: 24px;
   -webkit-app-region: drag;
 }
 
 .control-bar {
+  height: 24px;
   margin-bottom: 10px;
 }
 
@@ -175,5 +166,24 @@ export default {
   width: 60px;
   margin: 0 auto;
   margin-top: 5px;
+}
+
+.host-input {
+  width: 260px;
+  margin-right: 10px;
+}
+
+.port-input {
+  width: 120px;
+  margin-right: 10px;
+}
+
+.send-input-type {
+  margin-right: 10px;
+}
+
+.send-time-input {
+  width: 125px;
+  margin-right: 10px;
 }
 </style>

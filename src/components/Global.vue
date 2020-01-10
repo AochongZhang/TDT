@@ -22,6 +22,14 @@ export default {
   position: absolute !important;
 }
 
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
 .el-button,
 .el-input__inner {
   border-radius: 5px;
